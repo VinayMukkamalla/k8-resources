@@ -9,8 +9,8 @@ metadata:
     project: roboshop
 spec:
   containers:
-  - name: nginx
-    image: nginx
-    ports:
-    - containerport: 80
+    - name: nginx
+      image: nginx
+      ports:
+      - containerPort: 80
 
