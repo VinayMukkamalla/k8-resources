@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: Imagepullbackoff
+spec:
+  containers:
+  - name: nginx
+    image: nginxxxx  # some wrong image address
+
+
+## this error occurs if acess to pull images is not there
+## and when the image address is wrong/ incorect
