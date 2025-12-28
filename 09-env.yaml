@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-demo
+  labels:
+    name: container environment
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    env:
+    - name: HOST
+      value: mongodb
+    - name: PORT
+      value: 8080
