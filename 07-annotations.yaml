@@ -6,6 +6,6 @@ metadata:
     jenkins.url: "http://jenkins.devops.com/build/job"
     imageregistry: "http://hub.docker.com/"
 spec:
-  containes:
+  containers:
   - name: nginx
     image: nginx 
