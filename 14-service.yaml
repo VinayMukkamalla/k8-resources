@@ -8,6 +8,6 @@ spec:
     component: frontend
     environment: dev
   ports:
-  - Protocol: TCP
-    Port: 80  # service port
+  - protocol: TCP
+    port: 80  # service port
     targetPort: 80 # containerport
