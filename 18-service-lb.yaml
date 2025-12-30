@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-np  # service name
+  name: nginx-lb  # service name
 spec:
-  type: NodePort 
+  type: LoadBalancer
   selector:
     project: roboshop
     component: frontend
     environment: dev
-    purpose: nodeport
+    purpose: loadbalancer
   ports:
   - protocol: TCP
     port: 80  # service port{ClusterIp} && service will be diffrent for different components
-    targetPort: 80 # containerport
+    targetPort: 80
+    nodeport: 30007
