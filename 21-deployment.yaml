@@ -22,6 +22,9 @@ spec:
         purpose: dp-demo
         service: catalogue
         project: roboshop
+        component: frontend
+        environment: dev
+        purpose: loadbalancer
     spec:
         containers:
         - name: nginx
