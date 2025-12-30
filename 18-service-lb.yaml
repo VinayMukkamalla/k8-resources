@@ -13,4 +13,4 @@ spec:
   - protocol: TCP
     port: 80  # service port{ClusterIp} && service will be diffrent for different components
     targetPort: 80
-    nodeport: 30007
+    nodePort: 30007
