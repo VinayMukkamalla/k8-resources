@@ -22,7 +22,7 @@ spec:
         purpose: rs-demo
         service: catalogue
         project: roboshop
-      spec:
+    spec:
         containers:
         - name: nginx
           image: nginx 
