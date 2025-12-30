@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: rs 
+  name: replicas 
   # these are replicaset resource labels
   labels:
     purpose: rs-demo
