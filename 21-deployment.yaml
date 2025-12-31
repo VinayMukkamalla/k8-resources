@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: replicas 
+  name: deploy 
   # these are replicaset resource labels
   labels:
     purpose: dp-demo
