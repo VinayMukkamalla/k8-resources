@@ -1,4 +1,4 @@
-# creating pv is K* admin job
+# creating pv is K8 admin job
 apiVersion: v1
 kind: PersistentVolume
 metadata:
