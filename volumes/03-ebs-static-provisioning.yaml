@@ -12,7 +12,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4                        # file system types 
-    volumeHandle: vol-027fbd125ddf02d9a   # volume ID 
+    volumeHandle: vol-0b6af55c7ecc856ec   # volume ID 
   # nodeAffinity:
   #   required:
   #     nodeSelectorTerms:
@@ -49,7 +49,7 @@ spec:
     - name: nginx-html
       mountPath: /usr/share/nginx/html
   nodeSelector:
-    topology.kubernetes.io/zone: us-east-1b
+    topology.kubernetes.io/zone: us-east-1d
   volumes:
   - name: nginx-html
     persistentVolumeClaim:
