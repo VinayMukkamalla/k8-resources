@@ -27,3 +27,17 @@ spec:
   - name: nginx-html
     persistentVolumeClaim:
       claimName: efs-dynamic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-efs-static
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: efs-static
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30007  # ephemeral 30000 - 32767
