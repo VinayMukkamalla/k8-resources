@@ -1,68 +1,70 @@
-# headless service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    purpose: satefulset-nginx
+spec:
+  #type: LoadBalancer for DB statefulset not required explicitly
+  selector:
+    app: nginx
+    purpose: satefulset-nginx
+  ports:
+  - port: 80
+    name: www
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-headless
   labels:
     app: nginx
-    purpose: stateful-demo
+    purpose: satefulset-nginx
 spec:
-  ports:
-  - port: 80
-    name: web
   clusterIP: None
   selector:
     app: nginx
-    purpose: stateful-demo
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-    purpose: stateful-demo
-spec:
+    purpose: satefulset-nginx
   ports:
   - port: 80
-    name: web
-  selector:
-    app: nginx
-    purpose: stateful-demo
+    name: www
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nginx
+  name: ss-nginx
+  labels:
+    app: nginx
+    purpose: satefulset-nginx
 spec:
+  serviceName: "nginx-headless"  # for peer discovery we need to give it will fetch member machines in the cluster
+  replics: 3
   selector:
     matchLabels:
       app: nginx
-      purpose: stateful-demo # has to match .spec.template.metadata.labels
-  serviceName: "nginx-headless" # this should be head less service name
-  replicas: 3 # by default is 1
+      purpose: satefulset-nginx
   template:
     metadata:
       labels:
         app: nginx
-        purpose: stateful-demo # has to match .spec.selector.matchLabels
+        purpose: satefulset-nginx
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:latest
         ports:
         - containerPort: 80
           name: web
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-  # This is PVC
-  volumeClaimTemplates:
-  - metadata:
-      name: www
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "roboshop-ebs"
-      resources:
-        requests:
-          storage: 1Gi
+      vomumeClaimTemplates:
+      - metadata:
+          name: www 
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storgeClassName: "roboshop-ebs" # using storage class which is already available 
+        resources:
+          requests:
+            storage: 1Gi
